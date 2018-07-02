@@ -1,0 +1,34 @@
+{% extends "mybase.html" %}
+{% block urlresult %}
+<div class="container">
+     <div class="starter-template">
+       <div class="row" style="height:100vh;">
+               <div class="col-md-10 col-md-offset-1">
+                   <table class="table">
+                     <thead>
+                       <tr>
+                         <th>Site URL</th>
+                         <th>Date</th>
+                         <th>Content Length</th>
+                         <th>S3 Link</th>
+                         <th>Zip File</th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                       {% for val in output %}
+                       <tr>
+                         <td>{{val.site_url}}</td>
+                         <td>{{val.version_date}}</td>
+                         <td>{{val.content_length}}</td>
+                         <td>{{val.s3_link}}</td>
+                         <td>{{val.zip_file}}</td>
+                       </tr>
+                       {% endfor %}
+                     </tbody>
+                   </table>
+		<p>Retrieved From {{db}} </p>
+               </div>
+       </div>
+     </div>
+   </div>
+{% endblock %}
