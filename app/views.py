@@ -42,10 +42,19 @@ def search_post():
     	redshiftcursor.execute(query)
 	redshift_result = redshiftcursor.fetchall()
 	if redshiftcursor.rowcount==0:
-		pass
+		query = "select s.site_url,v.content_length,v.version_date,v.s3_link,v.zip_file from sites s,version_site vs,version v where s.site_url= '%s' and s.site_id=vs.site_id and vs.version_site_id = v.version_site_id" %(url)
+		sqlcursor.execute(query)
+		sql_result = sqlcursor.fetchall()
+		print(sql_result)
+		if sqlcursor.rowcount==0:
+			return render_template("result.html",output={},db="Sorry,Record not exist")
+		else:
+			for i in sql_result:
+				response.append(i)
+			json_response = [{"site_url": x[0],"content_length":x[1],"version_date": x[2],"s3_link": x[3],"zip_file":x[4]} for x in response]
+			return render_template("result.html",output=json_response,db = "Retrieve from MySQL")
 	else:
 		for i in redshift_result:
-			print(i)
 			response.append(i)
 	json_response = [{"site_url": x[0],"content_length":x[1],"version_date": x[2],"s3_link": x[3],"zip_file":x[4]} for x in response]
-	return render_template("result.html",output=json_response,db="Redshift")
+	return render_template("result.html",output=json_response,db="Retrieve from Amazon Redshift")

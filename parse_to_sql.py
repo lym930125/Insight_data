@@ -11,6 +11,8 @@ from pyspark.sql.functions import trim
 from pyspark.sql.functions import lit
 from mysql.connector import errorcode
 import mysql.connector
+
+
 sc = SparkContext(appName="migrate")
 sqlContext = SQLContext(sc)
 
@@ -53,6 +55,8 @@ def get_data_content(line):
         return line_list[1]
 
 def insert_into_mysql():
+
+## Cannot get the variable outside the foreach(),has to re-declare the veriable and reconnect to the MySQL DB
 	USER = ''
 	PASS = ''
 	HOST = ''
@@ -72,7 +76,6 @@ def insert_into_mysql():
                 	print(err)
 	stmt = "insert into sites(site_id,site_url) values(%s,%s)"
 	cursor.executemany(stmt,sites_list)
-#	cursor.execute(stmt)
 	v_list =[]
 	for d in version_list:
 		temp = []
@@ -84,15 +87,14 @@ def insert_into_mysql():
 		v_list.append(temp)
 	stmt2 = "insert into version_site(site_id,version_site_id) values(%s,%s)"
 	cursor.executemany(stmt2,site_version_list)	
-#	cursor.execute(stmt2)
-	
 	stmt3 = "insert into version(version_site_id,version_date,content_length,s3_link,zip_file) values (%s,%s,%s,%s,%s)"
-
 	cursor.executemany(stmt3,v_list)
 	cnx.commit()
 	cnx.close()
 	
 def obtain_data(data,link_str):
+
+## this function is inside foreach(), so has to global the variable to get the value of variable declare outside of the foreach()
 	global count
 	global sites_list
 	global version_list
@@ -155,11 +157,12 @@ def obtain_data(data,link_str):
 alldata = sc.textFile("s3a://commoncrawl/crawl-data/CC-MAIN-2018-22/wet.paths.gz")
 data_list = alldata.collect()
 length = len(data_list)
+
+## while doing the parsing job, create a text file to record which file is currently parsing, in case the job has been interrupt, we can continue the job starting from the file lately record
 for i in range(0,length):
 	f = open("count.txt","a")
 	f.write(str(i))
 	f.close()
-	print(str(i)+"th file is inserting")
 	link_str = str(data_list[i])
 	link = "s3a://commoncrawl/"+link_str
 	lines = sqlContext.read.text(link)
