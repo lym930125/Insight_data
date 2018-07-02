@@ -25,8 +25,11 @@ run.py : execute file for Flask GUI
 # Setup
 
 1.create a mysql databse
+
 2.create a Amazon Redshift Cluster
+
 3.install spark
+
 4.parse the data into mysql using the below command:
 ```
 /home/ubuntu/.local/bin/spark-submit --jars /usr/local/spark/mysql-java.jar parse_to_sql.py
