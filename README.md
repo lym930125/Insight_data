@@ -7,11 +7,11 @@ Data Migrator
 The project is simulating the database migration process from MySQL to Amazon Redshift. The dataset used is the common crawl data from Amazon public data set, for more information about the dataset, please go to http://commoncrawl.org
 
 
-###The outline of the data pipeline - 
+#The outline of the data pipeline - 
 ![alt tag](img/data_pipeline.jpg "Data Pipeline")
 
 
-### Directory Map
+# Directory Map
 app: All the code,html template and css for the Flask GUI
 
 parse_to_sql.py : The pyspark code parse all the data from common crawl dataset in s3 to MySQL databse
@@ -23,6 +23,7 @@ tornadoapp.py : Allow multiple user access the web server
 run.py : execute file for Flask GUI
 
 #Setup
+
 1.create a mysql databse
 2.create a Amazon Redshift Cluster
 3.install spark
