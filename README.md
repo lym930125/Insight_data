@@ -2,12 +2,12 @@ Data Migrator
 
 ================
 
-#Introduction
+# Introduction
 
 The project is simulating the database migration process from MySQL to Amazon Redshift. The dataset used is the common crawl data from Amazon public data set, for more information about the dataset, please go to http://commoncrawl.org
 
 
-#The outline of the data pipeline - 
+# The outline of the data pipeline - 
 ![alt tag](img/data_pipeline.jpg "Data Pipeline")
 
 
@@ -22,7 +22,7 @@ tornadoapp.py : Allow multiple user access the web server
 
 run.py : execute file for Flask GUI
 
-#Setup
+# Setup
 
 1.create a mysql databse
 2.create a Amazon Redshift Cluster
