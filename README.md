@@ -1,10 +1,16 @@
 # Data Migrator
 
-================
-
 ## Introduction
 
 The project is simulating the database migration process from MySQL to Amazon Redshift. The dataset used is the common crawl data from Amazon public data set, for more information about the dataset, please go to http://commoncrawl.org
+
+## Approach
+
+The project is simulating an application trying to access some data inside the database.
+1. It will query the status table in MySQL to find out the status of the certain data
+2. The application will retrieve the data according to the return result from MySQL
+
+![alt tag](img/approach.jpg "Data Pipeline")
 
 
 ## The outline of the data pipeline
@@ -29,6 +35,8 @@ The project is simulating the database migration process from MySQL to Amazon Re
         └── app
             └── __init__.py
             └── views.py
+            └── static
+            └── templates
 
 ## Setup
 
