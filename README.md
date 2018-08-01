@@ -9,7 +9,8 @@ The project is simulating the database migration process from MySQL to Amazon Re
 
 ## The outline of the data pipeline
 
-![alt tag](img/data_pipeline.jpg "Data Pipeline")
+![alt tag](img/prepare.jpg "Data Pipeline")
+![alt tag](img/migration.jpg "Data Pipeline")
 
 
 ## Directory Map
