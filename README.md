@@ -1,7 +1,13 @@
 # Data Migrator
 
-Project Presentation: https://docs.google.com/presentation/d/1he1XExo9ja1tQ1pNQqU4zMbWFc2VrPvduFJTBZC09mw/edit#slide=id.p1
-Project Demo: https://youtu.be/PMcB69KmHNc
+Project Presentation: 
+
+https://docs.google.com/presentation/d/1he1XExo9ja1tQ1pNQqU4zMbWFc2VrPvduFJTBZC09mw/edit#slide=id.p1
+
+Project Demo:
+
+https://youtu.be/PMcB69KmHNc
+
 ## Introduction
 
 The project is simulating the database migration process from MySQL to Amazon Redshift. The dataset used is the common crawl data from Amazon public data set, for more information about the dataset, please go to http://commoncrawl.org
